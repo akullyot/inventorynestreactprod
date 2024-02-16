@@ -1,70 +1,151 @@
-# Getting Started with Create React App
+# InventoryNest
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+InventoryNest is a comprehensive inventory management system built with Node.js and Express, designed to streamline the process of inventory tracking, product management, and data analysis for warehouses and retail businesses.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Inventory Management:** Track and manage product inventory across multiple warehouses.
+- **Sales Tracking:** Monitor sales data, including quantities sold and total revenue.
+- **Distance Calculation:** Utilize geolocation data to calculate distances for efficient logistics.
+- **AWS S3 Integration:** Seamlessly handle file uploads and storage with AWS S3.
+- **Data Visualization:** Analyze sales and inventory data with built-in visualization tools.
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+### Prerequisites
 
-### `npm test`
+What things you need to install the software:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+- Node.js
+- npm (Node Package Manager)
+- PostgreSQL
 
-### `npm run build`
+### Installing
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+A step-by-step series of examples that tell you how to get a development environment running:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+1. **Clone the repository:**
+  
+  ```bash
+  git clone https://github.com/djmotor90/InventoryNest.git
+  ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+2. **Navigate to the project directory:
 
-### `npm run eject`
+  ```bash
+  cd InventoryNest
+  ```
+3. **Install dependencies:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+  ```bash
+  npm install
+  ```
+4. **Set up environment variables:
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+Create a .env file in the root directory and add the necessary configurations (refer to .env.example for a template).
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+5. **Start the server:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+  ```bash
 
-## Learn More
+  npm start
+  ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+The server will start running on http://localhost:3001.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+Usage
+Here's a brief overview of how to use InventoryNest:
 
-### Code Splitting
+Navigate to http://localhost:3001 to view the landing page with warehouse and sales information.
+Use the /products, /customers, /warehouses, and /reporting routes for specific functionalities.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## API Documentation
 
-### Analyzing the Bundle Size
+The InventoryNest API provides access to resources like products, customers, warehouses, deliveries, and more. Below is an overview of the available endpoints along with their methods and functionalities:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### Products
 
-### Making a Progressive Web App
+- **GET /products**
+  - Description: Retrieve a list of all products.
+  - Response: Array of product objects.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+- **POST /products**
+  - Description: Add a new product to the inventory.
+  - Request Body: Product details (name, category, price, etc.).
+  - Response: Details of the added product.
 
-### Advanced Configuration
+- **GET /products/:id**
+  - Description: Get details of a specific product.
+  - Response: Product object.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+- **PUT /products/:id**
+  - Description: Update details of a specific product.
+  - Request Body: Updated product details.
+  - Response: Updated product object.
 
-### Deployment
+- **DELETE /products/:id**
+  - Description: Delete a specific product from the inventory.
+  - Response: Confirmation message.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+### Customers
 
-### `npm run build` fails to minify
+- **GET /customers**
+  - Description: Retrieve a list of all customers.
+  - Response: Array of customer objects.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- **POST /customers**
+  - Description: Add a new customer.
+  - Request Body: Customer details.
+  - Response: Details of the added customer.
+
+- **GET /customers/:id**
+  - Description: Get details of a specific customer.
+  - Response: Customer object.
+
+- **PUT /customers/:id**
+  - Description: Update details of a specific customer.
+  - Request Body: Updated customer details.
+  - Response: Updated customer object.
+
+### Warehouses
+
+- **GET /warehouses**
+  - Description: Retrieve a list of all warehouses.
+  - Response: Array of warehouse objects.
+
+- **POST /warehouses**
+  - Description: Add a new warehouse.
+  - Request Body: Warehouse details.
+  - Response: Details of the added warehouse.
+
+- **GET /warehouses/:id**
+  - Description: Get details of a specific warehouse.
+  - Response: Warehouse object.
+
+### Deliveries
+
+- **GET /deliveries**
+  - Description: Retrieve a list of all deliveries.
+  - Response: Array of delivery objects.
+
+- **POST /deliveries**
+  - Description: Record a new delivery.
+  - Request Body: Delivery details.
+  - Response: Details of the recorded delivery.
+
+- **GET /deliveries/:id**
+  - Description: Get details of a specific delivery.
+  - Response: Delivery object.
+
+### Reporting
+
+- **GET /reporting/sales**
+  - Description: Get sales reports.
+  - Response: Sales data and analytics.
+
+- **GET /reporting/stock-levels**
+  - Description: Get current stock levels in warehouses.
+  - Response: Stock level data.
+
